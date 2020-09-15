@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import academia.modelo.ConnectionManager;
 import academia.modelo.dao.CursoDAO;
 import academia.modelo.pojo.Curso;
-import academia.modelo.pojo.Persona;
+import academia.modelo.pojo.Usuario;
 
 public class CursoDAOImpl implements CursoDAO{
-	
-	private static CursoDAOImpl INSTANCE = null;
 	
 	private CursoDAOImpl() {
 		super();
 	}
+	
+	private static CursoDAOImpl INSTANCE = null;
 	
 	public static synchronized CursoDAOImpl getInstance() {
 		
@@ -26,8 +26,9 @@ public class CursoDAOImpl implements CursoDAO{
 		return INSTANCE;
 	}
 	
+	
 	private static final String SQL_LISTAR = "SELECT c.id 'id_curso', c.identificador, c.curso, c.horas,"
-										   + 		"p.id 'id_profesor', p.nombre 'nombre_profesor', p.apellidos 'apellidos_profesor', p.rol "
+										   + 		"p.id 'id_profesor', p.nombre 'nombre_profesor', p.apellidos 'apellidos_profesor', p.rol, p.contrasena "
 										   + "FROM cursos c, personas p WHERE c.idProfesor = p.id;";
 	
 	@Override
@@ -44,11 +45,12 @@ public class CursoDAOImpl implements CursoDAO{
 			
 			while (rs.next()) {
 				
-				Persona profesor = new Persona();
+				Usuario profesor = new Usuario();
 				profesor.setId(rs.getInt("id_profesor"));
 				profesor.setNombre(rs.getString("nombre_profesor"));
 				profesor.setApellidos(rs.getString("apellidos_profesor"));
 				profesor.setRol(rs.getInt("rol"));
+				profesor.setContrasena(rs.getString("contrasena"));
 				
 				Curso curso = new Curso();
 				curso.setId(rs.getInt("id_curso"));
@@ -65,6 +67,7 @@ public class CursoDAOImpl implements CursoDAO{
 		}
 		
 		return cursos;
-	}
+		
+	} // listar()
 
-}
+} // class

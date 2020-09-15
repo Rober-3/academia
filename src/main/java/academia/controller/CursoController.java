@@ -31,8 +31,9 @@ public class CursoController extends HttpServlet {
 		cursos = dao.listar();
 		
 		request.setAttribute("cursos", cursos);
-		request.getRequestDispatcher("cursos.jsp").forward(request, response);
-	}
+		request.getRequestDispatcher("/views/cursos.jsp").forward(request, response);
+		
+	} // doGet
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,4 +42,4 @@ public class CursoController extends HttpServlet {
 		doGet(request, response);
 	}
 
-}
+} // class

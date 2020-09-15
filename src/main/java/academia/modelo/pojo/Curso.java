@@ -8,8 +8,8 @@ public class Curso {
 	private String nombre;
 	private String identificador;
 	private int horas;
-	private Persona profesor;
-	private ArrayList<Persona> alumnos;
+	private Usuario profesor;
+	private ArrayList<Usuario> alumnos;
 	
 	public Curso() {
 		super();
@@ -17,7 +17,7 @@ public class Curso {
 		this.nombre = "";
 		this.identificador = "";
 		this.horas = 0;
-		this.profesor = new Persona();
+		this.profesor = new Usuario();
 	}
 
 	public int getId() {
@@ -52,19 +52,19 @@ public class Curso {
 		this.horas = horas;
 	}
 
-	public Persona getProfesor() {
+	public Usuario getProfesor() {
 		return profesor;
 	}
 
-	public void setProfesor(Persona profesor) {
+	public void setProfesor(Usuario profesor) {
 		this.profesor = profesor;
 	}
 
-	public ArrayList<Persona> getAlumnos() {
+	public ArrayList<Usuario> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(ArrayList<Persona> alumnos) {
+	public void setAlumnos(ArrayList<Usuario> alumnos) {
 		this.alumnos = alumnos;
 	}
 

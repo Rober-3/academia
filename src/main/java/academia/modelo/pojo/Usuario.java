@@ -1,6 +1,9 @@
 package academia.modelo.pojo;
 
-public class Persona {
+public class Usuario {
+	
+	public static final int ROL_ALUMNO = 1;
+	public static final int ROL_PROFESOR = 2;
 	
 	private int id;
 	private String nombre;
@@ -8,7 +11,7 @@ public class Persona {
 	private int rol;
 	private String contrasena;
 	
-	public Persona() {
+	public Usuario() {
 		super();
 		this.id = 0;
 		this.nombre = "";
@@ -16,7 +19,7 @@ public class Persona {
 		this.rol = 0;
 		this.contrasena = "";
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -59,8 +62,8 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", rol=" + rol
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", rol=" + rol
 				+ ", contrasena=" + contrasena + "]";
 	}
-
-}
+	
+} // class
