@@ -72,7 +72,5 @@ public class Curso {
 	public String toString() {
 		return "Curso [id=" + id + ", nombre=" + nombre + ", codigo=" + codigo + ", horas=" + horas + "]";
 	}
-
-	
 	
 } // class
