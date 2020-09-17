@@ -53,7 +53,7 @@
 				<td class="align-middle">${cd.codigo}</td>
 				<td class="align-middle">${cd.horas}</td>
 				<td class="align-middle">${cd.profesor.nombre} ${cd.profesor.apellidos}</td>
-				<td class="align-middle">Inscribirse</td>
+				<td class="align-middle"><a href="inscribir?idcurso=${cd.id}&idalumno=${usuario_sesion.id}">Inscribirse</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
