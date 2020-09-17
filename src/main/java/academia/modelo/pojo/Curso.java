@@ -6,7 +6,7 @@ public class Curso {
 	
 	private int id;
 	private String nombre;
-	private String identificador;
+	private String codigo;
 	private int horas;
 	private Usuario profesor;
 	private ArrayList<Usuario> alumnos;
@@ -15,7 +15,7 @@ public class Curso {
 		super();
 		this.id = 0;
 		this.nombre = "";
-		this.identificador = "";
+		this.codigo = "";
 		this.horas = 0;
 		this.profesor = new Usuario();
 	}
@@ -36,12 +36,12 @@ public class Curso {
 		this.nombre = nombre;
 	}
 
-	public String getIdentificador() {
-		return identificador;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public int getHoras() {
@@ -70,8 +70,9 @@ public class Curso {
 
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nombre=" + nombre + ", identificador=" + identificador + ", horas=" + horas
-				+ ", profesor=" + profesor + ", alumnos=" + alumnos + "]";
+		return "Curso [id=" + id + ", nombre=" + nombre + ", codigo=" + codigo + ", horas=" + horas + "]";
 	}
+
+	
 	
 } // class
