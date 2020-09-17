@@ -30,6 +30,8 @@ public class CursoDAOImpl implements CursoDAO{
 		return INSTANCE;
 	}
 	
+	private static final String SQL_GET_BY_ID = 		  "SELECT id, curso, codigo, horas FROM cursos c WHERE id = ?";
+	
 	private static final String SQL_GET_BY_ID_BY_PROFE =  "SELECT c.id, c.curso, c.codigo, c.horas "
 													   +  "FROM cursos c, usuarios u "
 													   +  "WHERE c.id_profesor = u.id AND c.id = ? AND u.id = ? "
@@ -70,11 +72,50 @@ public class CursoDAOImpl implements CursoDAO{
 														+ "ORDER BY c.curso ASC LIMIT 500;";
 
 	private static final String SQL_INSERT_BY_PROFE =	  "INSERT INTO cursos (curso, codigo, horas, id_profesor) VALUES (?, ?, ?, ?);";
-
+	
 	private static final String SQL_DELETE_BY_PROFE =	  "DELETE FROM cursos WHERE id = ? AND id_profesor = ?;";
 
 
 
+	@Override
+	public Curso getById(int idPojo) throws Exception {
+
+		Curso curso = new Curso();
+		
+		try (
+				Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_BY_ID);
+				
+				) {
+			
+			pst.setInt(1, idPojo);
+			LOG.debug(pst);
+			
+			try (ResultSet rs = pst.executeQuery()) {
+				
+				if (rs.next()) {
+					
+					curso.setId(rs.getInt("id"));
+					curso.setNombre(rs.getString("curso"));
+					curso.setCodigo(rs.getString("codigo"));
+					curso.setHoras(rs.getInt("horas"));
+					
+				} else {
+					throw new Exception("No se ha encontrado ningún curso asociado a ese id.");
+				}
+				
+			} // try interno
+			
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+		
+		return curso;
+		
+	} // getById
+	
+	
+	
 	@Override
 	public Curso getByIdByProfe(int idCurso, int idProfesor) throws Exception {
 		
@@ -287,18 +328,18 @@ public class CursoDAOImpl implements CursoDAO{
 
 
 	@Override
-	public Curso insertByProfe(int idProfesor, Curso curso) throws Exception {
+	public Curso insertByProfe(Curso curso) throws Exception {
 
 		try (
 				Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_INSERT_BY_PROFE,PreparedStatement.RETURN_GENERATED_KEYS);
 
 				){
-			
+			// INSERT INTO cursos (curso,codigo,horas,id_profesor) VALUES ('Bases de datos','I004',500,1);
 			pst.setString(1, curso.getNombre());
 			pst.setString(2, curso.getCodigo());
 			pst.setInt(3, curso.getHoras());
-			pst.setInt(4, idProfesor);
+			pst.setInt(4, curso.getProfesor().getId());
 			LOG.debug(pst);
 			
 			int affectedRows = pst.executeUpdate();
@@ -307,8 +348,10 @@ public class CursoDAOImpl implements CursoDAO{
 				
 				try (ResultSet rsKeys = pst.getGeneratedKeys()){
 					
-					int id = rsKeys.getInt(1);
-					curso.setId(id);
+					if (rsKeys.next()) {
+						int id = rsKeys.getInt(1);
+						curso.setId(id);
+					}
 					
 				} // try interno
 				
@@ -351,13 +394,7 @@ public class CursoDAOImpl implements CursoDAO{
 
 
 
-	// TODO Métodos sin implementar.
-	@Override
-	public Curso getById(int idPojo) throws Exception {
-		return null;
-	} // getById
-
-
+	// TODO Métodos por implementar.
 	
 	@Override
 	public Curso insert(Curso pojo) throws Exception {
