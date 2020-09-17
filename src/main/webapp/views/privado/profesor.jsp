@@ -7,8 +7,10 @@
 
 
 <h1>PÁGINA DEL PROFESOR</h1>
+
 <p>Bienvenido ${usuario_sesion.nombre} ${usuario_sesion.apellidos}</p>
 
+<a href="insertar?&idprofesor=${usuario_sesion.id}">Insertar un nuevo curso</a>
 
 <h3 class="text-center">Cursos que impartes</h3>
 
