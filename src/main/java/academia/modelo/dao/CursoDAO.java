@@ -32,7 +32,7 @@ public interface CursoDAO extends Crudable<Curso> {
 	 * @return Curso insertado.
 	 * @throws Exception 
 	 */
-	Curso insertByProfe(int idProfesor, Curso curso) throws Exception;
+	Curso insertByProfe(Curso curso) throws Exception;
 	
 	/**
 	 * Permite que un profesor borre un curso de la base de datos.
