@@ -36,14 +36,14 @@ public class CursoEliminarController extends HttpServlet {
 
 		String paramId = request.getParameter("id");
 		
-		// Recupera el usuario de la sesión y obtiene su id.
-		Usuario profesor = (Usuario) request.getSession().getAttribute("usuario_sesion");
-		int idProfesor = profesor.getId();
-
 		try {
 			
 			int idCurso = Integer.parseInt(paramId);
 			
+			// Recupera el usuario de la sesión y obtiene su id.
+			Usuario profesor = (Usuario) request.getSession().getAttribute("usuario_sesion");
+			int idProfesor = profesor.getId();
+
 			curso = dao.deleteByProfe(idCurso, idProfesor);
 			mensaje = new Mensaje("success", "Se ha eliminado correctamente el curso " + curso + ".");
 			
