@@ -1,15 +1,16 @@
-function cifrar() {
+function confirmar(nombre) {
+	
+	// Este método devuelve true si el usuario confirma la eliminación del curso y falso en caso contrario.
+	// curso es el parámetro que se pasa desde profesor.jsp : ${c.curso}.
+	
+	if ( confirm('¿Estás seguro de querer eliminar ' + nombre + '?') ){
 		
-		// Recuperar el valor de la contraseña del input a traves de su id.
-		var cifrada = document.getElementById('contrasena').value;		
+		console.debug('Continúa el evento por defecto del ancla.');
 		
-		// Conseguir el hash mediante la librería incluida en el pie de login.jsp
-		var hash = md5(cifrada);
+	}else {
 		
-		// Guardar en el atributo value del input el código hash.
-		document.getElementById('contrasena').value = hash;
-				
-		// Enviar el formulario.
-		return true;
+		console.debug('Previene o detiene el evento del ancla.');
+		event.preventDefault();
+	}
+	
 }
-
