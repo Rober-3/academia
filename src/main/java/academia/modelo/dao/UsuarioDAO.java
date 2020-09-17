@@ -1,8 +1,9 @@
 package academia.modelo.dao;
 
+import academia.interfaces.Crudable;
 import academia.modelo.pojo.Usuario;
 
-public interface UsuarioDAO {
+public interface UsuarioDAO extends Crudable<Usuario>{
 	
 	/**
 	 * Busca usuarios en la bbdd por su nombre y contraseña.
