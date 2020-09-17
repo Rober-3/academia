@@ -1,65 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../includes/head.jsp">
+	<jsp:param name="pagina" value="Inicio de sesion" />
+	<jsp:param name="title" value="Inicio de sesion" />
+</jsp:include>
 
-<html>
+<main>
 
-<head>
+	<div class="container my-5 formulario">
 
-<title>Inicio de sesión</title>
+		<h1 class="text-center">Iniciar sesi�n</h1>
+		<h5 class="text-center">Asier 123 --> alumno</h5>
+		<h5 class="text-center">Alain 123 --> profesor</h5>
 
-<base href="${pageContext.request.contextPath}/" />
+		<form action="login" method="post" class="mt-3">
 
-</head>
+			<div class="form-group">
+				<label for="nombre">Nombre de usuario</label>
+				<input type="text"
+					   id="nombre"
+					   name="nombre"
+					   value="Alain"
+					   class="form-control form-control-sm"
+					   placeholder="Introduce tu nombre de usuario"
+					   autofocus>
+			</div>
 
-<body>
+			<div class="form-group">
+				<label for="contrasena">Contrase�a</label>
+				<input type="password"
+					   id="contrasena"
+					   name="contrasena"
+					   value="123"
+					   class="form-control form-control-sm"
+					   placeholder="Introduce tu contrase�a">
+			</div>
 
-	<main>
+			<button type="submit" class="btn btn-primary btn-sm">Iniciar sesi�n</button>
 
-		<div>
+		</form>
 
-			<h3>Iniciar sesión</h3>
-			<h5>Asier 123 --> alumno</h5>
-			<h5>Alain 123 --> profesor</h5>
+	</div>
 
+</main>
 
-			<form action="login" method="post" onsubmit="cifrar()">
-
-				<div>
-					<label for="nombre">Nombre de usuario</label>
-					<input type="text"
-						   id="nombre"
-						   name="nombre"
-						   value="Asier"
-						   class="form-control form-control-sm"
-						   placeholder="Introduce tu nombre de usuario">
-				</div>
-
-
-				<div>
-					<label for="contrasena">Contraseña</label>
-					<input type="password"
-						   id="contrasena"
-						   name="contrasena"
-						   value="123"
-						   class="form-control form-control-sm"
-						   placeholder="Introduce tu contraseña">
-				</div>
-				
-				<button type="submit">Iniciar sesión</button>
-
-				<p>${mensaje}</p>
-
-			</form>
-
-		</div>
-
-	</main>
-
-	<!-- Script para cifrar en MD5. -->
-	<script src="js/md5.min.js"></script>
-
-	<!-- Script personalizado. -->
-	<script src="js/custom.js"></script>
-
-</body>
-
-</html>
+<jsp:include page="../includes/footer.jsp"></jsp:include>
