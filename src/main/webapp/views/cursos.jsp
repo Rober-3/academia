@@ -41,7 +41,7 @@
 </p>
 
 <p>alumno select e insert en nuevo curso</p>
-<p>profesor select insert y delete</p>
+
 
 <br>
 
