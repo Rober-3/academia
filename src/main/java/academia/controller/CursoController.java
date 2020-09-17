@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import academia.modelo.dao.impl.CursoDAOImpl;
 import academia.modelo.pojo.Curso;
 
@@ -17,19 +19,26 @@ import academia.modelo.pojo.Curso;
  */
 @WebServlet("/cursos")
 public class CursoController extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-    
+	private static final Logger LOG = Logger.getLogger(CursoController.class);
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		CursoDAOImpl dao = CursoDAOImpl.getInstance();
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
-		cursos = dao.listar();
-		
+
+		try {
+			cursos = dao.getAll();
+
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+
 		request.setAttribute("cursos", cursos);
 		request.getRequestDispatcher("/views/cursos.jsp").forward(request, response);
 		
@@ -43,3 +52,4 @@ public class CursoController extends HttpServlet {
 	}
 
 } // class
+
