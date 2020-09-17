@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.log4j.Logger;
+
 import academia.modelo.ConnectionManager;
 import academia.modelo.dao.UsuarioDAO;
 import academia.modelo.pojo.Usuario;
 
 public class UsuarioDAOImpl implements UsuarioDAO{
+	
+	private static final Logger LOG = Logger.getLogger(UsuarioDAOImpl.class);
 	
 	private UsuarioDAOImpl() {
 		super();
@@ -25,8 +29,8 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	}
 	
 	
-	private static final String SQL_BUSCAR = "SELECT id, nombre, apellidos, rol, contrasena FROM personas "
-										   + "WHERE nombre = ? AND contrasena = ?;";
+	private static final String SQL_BUSCAR = "SELECT id, nombre, apellidos, rol FROM usuarios "
+										   + "WHERE nombre = ? AND contrasena = MD5(?);";
 
 	@Override
 	public Usuario buscar(String nombre, String contrasena) {
@@ -41,6 +45,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			
 			pst.setString(1, nombre);
 			pst.setString(2, contrasena);
+			LOG.debug(pst);
 			
 			try (ResultSet rs = pst.executeQuery()) {
 				
@@ -50,7 +55,6 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 					usuario.setNombre(rs.getString("nombre"));
 					usuario.setApellidos(rs.getString("apellidos"));
 					usuario.setRol(rs.getInt("rol"));
-					usuario.setContrasena(rs.getString("contrasena"));
 					
 				} else {
 					usuario = null;
@@ -60,7 +64,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 			
 		} // try_catch
 
