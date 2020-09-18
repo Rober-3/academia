@@ -36,13 +36,6 @@
 
 <br>
 
-<p>
-	<a href="views/login.jsp">Iniciar sesión</a>
-</p>
-
-
-<br>
-
 <h2>LOGIN</h2>
 <ol>
 	<li>Enlace para ir al formulario de login o ponerlo en esta misma página.</li>

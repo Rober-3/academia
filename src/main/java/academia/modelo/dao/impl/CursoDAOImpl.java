@@ -335,7 +335,7 @@ public class CursoDAOImpl implements CursoDAO{
 				PreparedStatement pst = con.prepareStatement(SQL_INSERT_BY_PROFE,PreparedStatement.RETURN_GENERATED_KEYS);
 
 				){
-			// INSERT INTO cursos (curso,codigo,horas,id_profesor) VALUES ('Bases de datos','I004',500,1);
+
 			pst.setString(1, curso.getNombre());
 			pst.setString(2, curso.getCodigo());
 			pst.setInt(3, curso.getHoras());

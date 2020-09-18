@@ -7,8 +7,6 @@
 
 
 <h1 class="text-center mt-3">PÁGINA DEL ALUMNO</h1>
-<p class="text-center mt-3">Bienvenido ${usuario_sesion.nombre} ${usuario_sesion.apellidos}</p>
-
 
 <h3 class="text-center mt-5">Cursos en los que estás inscrito</h3>
 

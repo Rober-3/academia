@@ -32,7 +32,7 @@
 				   name="nombre"
 				   value="${curso.nombre}"
 				   class="form-control form-control-sm"
-				   placeholder="El modelo debe tener entre 3 y 50 caracteres y no estar repetido.">
+				   placeholder="Introduce el nombre del curso.">
 		</div>
 
 		<div class="form-group">
@@ -41,7 +41,8 @@
 				   id="codigo"
 				   name="codigo"
 				   value="${curso.codigo}"
-				   class="form-control form-control-sm">
+				   class="form-control form-control-sm"
+				   placeholder="Introduce el código del curso.">
 		</div>
 
 		<div class="form-group">
@@ -49,7 +50,9 @@
 			<input type="text"
 				   id="horas"
 				   name="horas"
-				   value="${curso.horas}">	
+				   value="${curso.horas}"
+				   class="form-control form-control-sm"
+				   placeholder="Introduce el número de horas curso.">
 		</div>
 		
 		

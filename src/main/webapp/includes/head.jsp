@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
     HttpSession s = request.getSession(true);
@@ -40,10 +41,22 @@
 				<img src="img/logo.png" alt="Maleta" title="Musix">
 			</div>
 		</div>
-	</header>
+	</header>	
+	
 	<nav id="menu_principal">
 		<ul>
 			<li><a href="index.jsp"><div class="icono home"></div>Inicio</a></li>
+		</ul>
+		<ul>
+			<li>
+				<c:if test="${empty sessionScope.usuario_sesion}">
+						<a class="nav-link text-white" href="login">Iniciar sesión</a>
+					</c:if>
+					<c:if test="${not empty sessionScope.usuario_sesion}">
+						<span>Bienvenido ${sessionScope.usuario_sesion.nombre} ${sessionScope.usuario_sesion.apellidos}</span>
+						<a class="nav-link text-white" href="views/frontoffice/inicio">Mi panel</a>
+					</c:if>
+			</li>
 		</ul>
 	</nav>
 

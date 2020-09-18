@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -31,7 +32,15 @@ public class CursoController extends HttpServlet {
 
 		CursoDAOImpl dao = CursoDAOImpl.getInstance();
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
+		
+		
+		// Invalida la sesión para que al pulsar en el botón Inicio no se muestre el nombre del usuario que ha hecho login.
+		// Debería estar en un controlador para hacer logout, pero se encuentra aquí de manera provisional.
+		HttpSession session = request.getSession();
+		session.invalidate();
+		session = null;
 
+		
 		try {
 			cursos = dao.getAll();
 
