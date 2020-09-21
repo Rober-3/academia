@@ -60,7 +60,7 @@
 	
 	<li>Miércoles: si inicia sesión un profesor que muestre sus cursos. Desde la misma jsp podria crear un nuevo curso y eliminarlo.</li>
 	
-	<li>Jueves: si inicia sesión un alumno que muestre los cursosena los que está inscrito. Desde la misma jsp debe poder apuntarse a un nuevo curso.</li>
+	<li>Jueves: si inicia sesión un alumno que muestre los cursos en los que está inscrito. Desde la misma jsp debe poder apuntarse a un nuevo curso.</li>
 </ol>
 
 <br>
