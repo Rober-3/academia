@@ -17,7 +17,6 @@ import org.apache.log4j.Logger;
 
 import academia.modelo.Mensaje;
 import academia.modelo.dao.impl.CursoDAOImpl;
-import academia.modelo.dao.impl.UsuarioDAOImpl;
 import academia.modelo.pojo.Curso;
 import academia.modelo.pojo.Usuario;
 
@@ -42,33 +41,11 @@ public class CursoInsertarController extends HttpServlet {
 
 		Curso curso = new Curso();
 
-		//-------------------------------------------------------
-//		UsuarioDAOImpl daoUsuario = UsuarioDAOImpl.getInstance();
-//		Usuario profesor = new Usuario();
-//		String paramIdProfesor = request.getParameter("idprofesor"); // <a href="insertar?&idprofesor=${usuario_sesion.id}">
-		//-------------------------------------------------------
-
-//		try {
-//
-//			//-------------------------------------------------
-//			int idProfesor = Integer.parseInt(paramIdProfesor);
-//			profesor = daoUsuario.getById(idProfesor);
-//			//-------------------------------------------------
-//
-//
-//		} catch (Exception e) {
-//			LOG.error(e);
-//		}
-//
-//		//----------------------------------------
-//		request.setAttribute("profesor", profesor);
-		//----------------------------------------
-
 		request.setAttribute("curso", curso);
 
 		request.getRequestDispatcher("views/formulario-cursos.jsp").forward(request, response);
 
-	}
+	} // doGet
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -84,32 +61,9 @@ public class CursoInsertarController extends HttpServlet {
 		String paramHoras = request.getParameter("horas");
 
 
-
-		// SOLUCIÓN CHAPUCERA PARA ESTABLECER EL PROFESOR DEL CURSO.
-
-		//		String paramIdProfesor = request.getParameter("idprofesor");
-		//		String nombreProfesor = request.getParameter("nombreprofesor");
-		//		String apellidosProfesor = request.getParameter("apellidosprofesor");
-		//		String paramRolProfesor = request.getParameter("rolprofesor");
-		//		String contrasenaProfesor = request.getParameter("contrasenaprofesor");
-
-
 		try {
-
-
-			//			int idProfesor = Integer.parseInt(paramIdProfesor);
-			//			int rolProfesor = Integer.parseInt(paramRolProfesor);
-			//			Usuario profesor = new Usuario();
-			//			profesor.setId(idProfesor);
-			//			profesor.setNombre(nombreProfesor);
-			//			profesor.setApellidos(apellidosProfesor);
-			//			profesor.setRol(rolProfesor);
-			//			profesor.setContrasena(contrasenaProfesor);
-
-
 			// Recupera el usuario de la sesión y obtiene su id.
 			Usuario profesor = (Usuario) request.getSession().getAttribute("usuario_sesion");
-			//int idProfesor = profesor.getId();
 
 			int id = Integer.parseInt(paramId);
 			int horas = Integer.parseInt(paramHoras);
@@ -127,7 +81,7 @@ public class CursoInsertarController extends HttpServlet {
 			if (violations.isEmpty()) { // Sin errores de validación puede guardarse el curso en la bbdd.
 
 				if (id == 0) {
-					dao.insertByProfe(curso);
+					dao.insert(curso);
 					mensaje = new Mensaje("success", "Curso registrado con éxito en la base de datos.");
 				}
 
