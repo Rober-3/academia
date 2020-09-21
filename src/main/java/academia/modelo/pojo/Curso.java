@@ -2,21 +2,22 @@ package academia.modelo.pojo;
 
 import java.util.ArrayList;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 public class Curso {
 	
 	private int id;
 	
-	@NotEmpty(message = ": este campo no puede quedar vacío")
+	@NotEmpty(message = " introduce el nombre del curso.")
 	private String nombre;
 	
-	@NotEmpty(message = ": este campo no puede quedar vacío")
+	@NotEmpty(message = " introduce el código del curso.")
 	private String codigo;
 	
-	@NotEmpty(message = ": este campo no puede quedar vacío")
-	
+	@Min(value = 1, message = ": el número de horas no puede ser menor a 1.")
 	private int horas;
+	
 	private Usuario profesor;
 	private ArrayList<Usuario> alumnos;
 	
