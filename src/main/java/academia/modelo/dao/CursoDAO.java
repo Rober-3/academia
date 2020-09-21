@@ -27,14 +27,6 @@ public interface CursoDAO extends Crudable<Curso> {
 	ArrayList<Curso> getAllByProfe(int idProfesor);
 	
 	/**
-	 * Permite que un profesor inserte un curso en la base de datos.
-	 * @param idProfesor Id del profesor que inserta el curso.
-	 * @return Curso insertado.
-	 * @throws Exception 
-	 */
-	Curso insertByProfe(Curso curso) throws Exception;
-	
-	/**
 	 * Permite que un profesor borre un curso de la base de datos.
 	 * @param idCurso Id del curso a borrar.
 	 * @param idProfesor Id del profesor que borra el curso.

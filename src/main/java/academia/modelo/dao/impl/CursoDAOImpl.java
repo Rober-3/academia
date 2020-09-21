@@ -71,7 +71,7 @@ public class CursoDAOImpl implements CursoDAO{
 														+ "(SELECT id_curso FROM alumnosCurso ac WHERE id_alumno = ?) "
 														+ "ORDER BY c.curso ASC LIMIT 500;";
 
-	private static final String SQL_INSERT_BY_PROFE =	  "INSERT INTO cursos (curso, codigo, horas, id_profesor) VALUES (?, ?, ?, ?);";
+	private static final String SQL_INSERT =			  "INSERT INTO cursos (curso, codigo, horas, id_profesor) VALUES (?, ?, ?, ?);";
 	
 	private static final String SQL_DELETE_BY_PROFE =	  "DELETE FROM cursos WHERE id = ? AND id_profesor = ?;";
 
@@ -328,11 +328,11 @@ public class CursoDAOImpl implements CursoDAO{
 
 
 	@Override
-	public Curso insertByProfe(Curso curso) throws Exception {
+	public Curso insert(Curso curso) throws Exception {
 
 		try (
 				Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(SQL_INSERT_BY_PROFE,PreparedStatement.RETURN_GENERATED_KEYS);
+				PreparedStatement pst = con.prepareStatement(SQL_INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 
 				){
 
@@ -363,7 +363,7 @@ public class CursoDAOImpl implements CursoDAO{
 		
 		return curso;
 
-	} // insertByProfe
+	} // insert
 
 
 
@@ -396,13 +396,6 @@ public class CursoDAOImpl implements CursoDAO{
 
 	// TODO Métodos por implementar.
 	
-	@Override
-	public Curso insert(Curso pojo) throws Exception {
-		return null;
-	} // insert
-
-	
-
 	@Override
 	public Curso update(Curso pojo) throws Exception {
 		return null;
