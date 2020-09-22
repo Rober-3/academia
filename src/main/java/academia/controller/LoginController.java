@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
 		
 		
 		// Recogida de parámetros del formulario.
-		String nombre = request.getParameter("nombre");
+		String nombre = request.getParameter("nombre"); 
 		String contrasena = request.getParameter("contrasena");
 		
 		
@@ -56,16 +56,19 @@ public class LoginController extends HttpServlet {
 				
 				request.getSession().setAttribute("usuario_sesion", usuario); // Guarda el usuario en la sesión.
 				
-				if (usuario.getRol() == usuario.ROL_ALUMNO) {
-					url = "views/privado/alumno"; // CursoAlumnoController
+				if (usuario.getRol() == Usuario.ROL_ALUMNO) {
+					url = "/views/privado/alumno"; // CursoAlumnoController
 					
 				} else {
-					url = "views/privado/profesor"; // CursoProfesorController
+					url = "/views/privado/profesor"; // CursoProfesorController
 				}
 				
 				// En los sendRedirect se pierden los atributos. Hay que guardarlos en la sesión.
 				request.getSession().setAttribute("mensaje", new Mensaje("success","Has iniciado sesión correctamente."));
-				response.sendRedirect(url);
+				
+				// response.sendRedirect(url);
+				// Es recomendable usar el ContextPath para evitar posibles problemas en los redireccionamientos.
+				response.sendRedirect(request.getContextPath() + url);
 				
 			} else { // Si no coinciden las credenciales o una o varias están vacías.
 				
