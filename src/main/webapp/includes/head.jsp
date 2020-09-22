@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
@@ -12,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 
-<meta name="description" content="Ipartek formación"> 
+<meta name="description" content="Ipartek formación">
 <meta name="viewport" content="width=device-width, user-scalable=no">
 
 <base href="${pageContext.request.contextPath}/" />
@@ -27,7 +28,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 
 <!-- CSS personalizado -->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 
 <title>${param.title}</title>
 
@@ -35,31 +36,45 @@
 
 <body>
 
+	<jsp:include page="mensaje.jsp"></jsp:include>
+
 	<header>
-		<div id="header_title">
-			<div id="header_img">
-				<img src="img/logo.png" alt="Maleta" title="Musix">
-			</div>
-		</div>
-	</header>	
-	
-	<nav id="menu_principal">
-		<ul>
-			<li><a href="index.jsp"><div class="icono home"></div>Inicio</a></li>
-		</ul>
-		<ul>
-			<li>
-				<c:if test="${empty sessionScope.usuario_sesion}">
-						<a class="nav-link text-white" href="login">Iniciar sesión</a>
+		<!-- Barra de navegación -->
+
+		<nav
+			class="barra text-light navbar navbar-expand-lg navbar-light bg-light py-4">
+
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarTogglerDemo02"
+				aria-controls="navbarTogglerDemo02" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+					<li class="nav-item active font-weight-bold"><a
+						class="nav-link" href="index.jsp">Inicio <span class="sr-only">(current)</span>
+					</a></li>
+
+
+
+				</ul>
+
+				<span class="form-inline my-2 my-lg-0 font-weight-bold">
+					<c:if test="${empty sessionScope.usuario_sesion}">
+						<a class="nav-link" href="login">Iniciar sesión</a>
 					</c:if>
 					<c:if test="${not empty sessionScope.usuario_sesion}">
-						<span>Bienvenido ${sessionScope.usuario_sesion.nombre} ${sessionScope.usuario_sesion.apellidos}</span>
-						<a class="nav-link text-white" href="views/frontoffice/inicio">Mi panel</a>
+						<span class="text-success">Bienvenido ${sessionScope.usuario_sesion.nombre} ${sessionScope.usuario_sesion.apellidos}</span>
 					</c:if>
-			</li>
-		</ul>
-	</nav>
-
-	<jsp:include page="mensaje.jsp"></jsp:include>
+				</span>
+			</div>
+		</nav>
+	</header>
 
 	<main class="container">
