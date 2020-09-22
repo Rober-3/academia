@@ -20,6 +20,7 @@
 			<th scope="col">CURSO</th>
 			<th scope="col">CODIGO</th>
 			<th scope="col">HORAS</th>
+			<th scope="col">Nº ALUMNOS</th>
 			<th scope="col"></th>
 		</tr>
 	</thead>
@@ -29,6 +30,7 @@
 				<td class="align-middle">${c.nombre}</td>
 				<td class="align-middle">${c.codigo}</td>
 				<td class="align-middle">${c.horas}</td>
+				<td class="align-middle">${c.numeroAlumnos}</td>
 				<td class="align-middle">
 					<!-- El evento confirmar ejecuta un script para confirmar la eliminación de un curso. 
 						 Se pasa el id del curso a eliminar como parámetro en la URL.-->

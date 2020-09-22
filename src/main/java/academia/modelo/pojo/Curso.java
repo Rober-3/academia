@@ -1,7 +1,5 @@
 package academia.modelo.pojo;
 
-import java.util.ArrayList;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,7 +17,10 @@ public class Curso {
 	private int horas;
 	
 	private Usuario profesor;
-	private ArrayList<Usuario> alumnos;
+	private int numeroAlumnos;
+	
+	// TODO Devolver un ArrayList con todos los alumnos y sus datos.
+	// private ArrayList<Usuario> alumnos;
 	
 	public Curso() {
 		super();
@@ -28,6 +29,7 @@ public class Curso {
 		this.codigo = "";
 		this.horas = 0;
 		this.profesor = new Usuario();
+		this.numeroAlumnos = 0;
 	}
 
 	public int getId() {
@@ -70,17 +72,18 @@ public class Curso {
 		this.profesor = profesor;
 	}
 
-	public ArrayList<Usuario> getAlumnos() {
-		return alumnos;
+	public int getNumeroAlumnos() {
+		return numeroAlumnos;
 	}
 
-	public void setAlumnos(ArrayList<Usuario> alumnos) {
-		this.alumnos = alumnos;
+	public void setNumeroAlumnos(int numeroAlumnos) {
+		this.numeroAlumnos = numeroAlumnos;
 	}
 
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nombre=" + nombre + ", codigo=" + codigo + ", horas=" + horas + "]";
+		return "Curso [id=" + id + ", nombre=" + nombre + ", codigo=" + codigo + ", horas=" + horas + ", profesor="
+				+ profesor + ", numeroAlumnos=" + numeroAlumnos + "]";
 	}
-	
+
 } // class

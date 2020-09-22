@@ -39,12 +39,11 @@ public class CursoProfesorController extends HttpServlet {
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario_sesion");
 			int idProfesor = usuario.getId();
 
-			cursos = dao.getAllByProfe(idProfesor);
+			cursos = dao.getAllByProfeWithNumAlumnos(idProfesor);
 
 			request.setAttribute("cursosp", cursos);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			LOG.error(e);
 			
 		} finally {
