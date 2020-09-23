@@ -27,8 +27,8 @@
 <!-- Datatables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 
-<!-- CSS personalizado -->
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+<!-- CSS personalizado. El parámetro en css sirve para forzar al navegador a recargar la caché. -->
+<link rel="stylesheet" type="text/css" href="css/styles.css?1">
 
 <title>${param.title}</title>
 
@@ -67,7 +67,11 @@
 
 				<span class="form-inline my-2 my-lg-0 font-weight-bold">
 					<c:if test="${empty sessionScope.usuario_sesion}">
-						<a class="nav-link" href="login">Iniciar sesión</a>
+						<!-- Accediendo a login en vez de a views/login.jsp, en login.jsp se mostrará un mensaje indicando que 
+						el nombre de usuario y la contraseña no son correctos. Esto es debido a que aún no se han enviado las
+						credenciales, por lo que en el controlador usuario == null.
+						Accediendo a /views/login.jsp en vez de  a views/login.jsp no se encontrará la ruta. -->
+						<a class="nav-link" href="views/login.jsp">Iniciar sesión</a>
 					</c:if>
 					<c:if test="${not empty sessionScope.usuario_sesion}">
 						<span class="text-success">Bienvenido ${sessionScope.usuario_sesion.nombre} ${sessionScope.usuario_sesion.apellidos}</span>
