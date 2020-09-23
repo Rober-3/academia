@@ -27,7 +27,7 @@ import academia.modelo.pojo.Usuario;
 				DispatcherType.INCLUDE, 
 				DispatcherType.ERROR
 		}
-					, urlPatterns = { "/privado/*" })
+					, urlPatterns = { "/views/privado/*" })
 public class AlumnoFilter implements Filter {
 	
 	private static final Logger LOG = Logger.getLogger(LoginController.class);
@@ -58,7 +58,7 @@ public class AlumnoFilter implements Filter {
 		
 		if (alumno == null) {
 			LOG.warn("Usuario == null: no ha iniciado sesión. Sin autentificar. Redirigido al login.");
-			res.sendRedirect(urlInicioApp + "/views/login.jsp");
+			res.sendRedirect(urlInicioApp + "/login");
 			
 		} else if (alumno.getRol() != alumno.ROL_ALUMNO) {
 			LOG.warn("El usuario no tiene privilegios como alumno. Redirigido al login.");
