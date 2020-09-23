@@ -41,7 +41,7 @@ public class ProfesorFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	@SuppressWarnings("unused")
+	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -51,7 +51,7 @@ public class ProfesorFilter implements Filter {
 		
 		LOG.trace("Filtrando URI " + req.getRequestURI());
 		
-		Usuario profesor = (Usuario) req.getAttribute("usuario_sesion");
+		Usuario profesor = (Usuario) req.getSession().getAttribute("usuario_sesion");
 		
 		if (profesor == null) {
 			LOG.warn("Usuario == null: no ha iniciado sesión. Sin autentificar. Redirigido al login.");
@@ -64,7 +64,7 @@ public class ProfesorFilter implements Filter {
 
 		} else {
 			// pass the request along the filter chain
-			chain.doFilter(request, response);
+			chain.doFilter(request, res);
 		}
 		
 	} // doFilter

@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<html>
+
 <head>
 <meta charset="UTF-8">
 
